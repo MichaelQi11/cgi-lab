@@ -16,6 +16,7 @@ from http.cookies import SimpleCookie
 
 
 # Part 5
+# Line 20 to 22 are obtained from Zoe Riell, January 25, 2021
 form = cgi.FieldStorage()
 user = form.getfirst("username")
 pwd = form.getfirst("password")
@@ -28,6 +29,7 @@ if (user == secret.username and pwd == secret.password):
 print()
 
 # Part 7
+# Line 33 to 39 are obtained from Zoe Riell, January 25, 2021
 c = SimpleCookie(os.environ["HTTP_COOKIE"])
 c_username = None
 c_password = None
