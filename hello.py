@@ -31,14 +31,14 @@ print()
 # Part 7
 # Line 33 to 39 are obtained from Zoe Riell, January 25, 2021
 c = SimpleCookie(os.environ["HTTP_COOKIE"])
-c_username = None
-c_password = None
+c_username = ""
+c_password = ""
 if c.get("UserID"):
     c_username = c.get("UserID").value
 if c.get("UserPassword"):
     c_password = c.get("UserPassword").value
 
-if not (c_username == secret.username and c_password == secret.password):
+if not (c_username == secret.username and c_password == secret.password) and not (user == secret.username and pwd == secret.password):
     print("""
     <!doctype html>
     <html>
@@ -75,5 +75,8 @@ if not (c_username == secret.username and c_password == secret.password):
     """)
 # Part 6
 else:
-    page = templates.secret_page(user, pwd)
+    if (c_username):
+        page = templates.secret_page(c_username, c_password)
+    else:
+        page = templates.secret_page(user, pwd)
     print(page)
